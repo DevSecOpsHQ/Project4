@@ -1,0 +1,29 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
+  name: order-service-route
+  namespace: apisix
+spec:
+  http:
+    - name: order-service
+      match:
+        paths:
+          - /order
+      backends:
+        - serviceName: order-service
+          servicePort: 5000
+---
+apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
+  name: notification-service-route
+  namespace: apisix
+spec:
+  http:
+    - name: notification-service
+      match:
+        paths:
+          - /notify
+      backends:
+        - serviceName: notification-service
+          servicePort: 5001

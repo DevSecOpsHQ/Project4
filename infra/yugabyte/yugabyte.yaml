@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: yugabyte
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: yugabyte
+  namespace: yugabyte
+spec:
+  serviceName: yugabyte
+  replicas: 1
+  selector:
+    matchLabels:
+      app: yugabyte
+  template:
+    metadata:
+      labels:
+        app: yugabyte
+    spec:
+      containers:
+        - name: yugabytedb
+          image: yugabytedb/yugabyte:latest
+          ports:
+            - containerPort: 5433
+          env:
+            - name: YB_MASTER_ADDRESSES
+              value: "yugabyte-0.yugabyte.svc.cluster.local:7100"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: yugabyte-ysql
+  namespace: yugabyte
+spec:
+  ports:
+    - port: 5433
+      targetPort: 5433
+  selector:
+    app: yugabyte
