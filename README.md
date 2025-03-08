@@ -42,6 +42,9 @@ kubectl apply -f kubernetes/service.yaml
 Run `minikube ip` to get the cluster IP.
 Access your app at `http://<minikube-ip>:30080`
 
+Then you should see the following output in your browser:
+![alt text](image.png)
+
 - For Docker Desktop with Kubernetes, try accessing the app at:
 `http://localhost:<nodePort>`
 
