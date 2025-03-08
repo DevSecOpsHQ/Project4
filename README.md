@@ -36,7 +36,7 @@ kubectl apply -f kubernetes/deployment.yaml
 kubectl apply -f kubernetes/service.yaml
 ```
 
-### 2. Access the Application:
+### 2. Access the Application
 
 - Using minikube:
 Run `minikube ip` to get the cluster IP.
