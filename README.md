@@ -52,4 +52,11 @@ Then you should see the following output in your browser:
 Because I use a NodePort service for this project, use the public IP or DNS name of one of your EKS worker nodes along with the nodePort:
 `http://<node-IP>:<nodePort>`
 
+### 3. Delete the Deployment and Service
+
+```bash
+kubectl delete -f kubernetes/deployment.yaml
+kubectl delete -f kubernetes/service.yaml
+```
+
 PS: I chose NodePort for simplicity in Minikube, but Ingress is better for production.
